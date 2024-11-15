@@ -1,7 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import { nodePolyfills } from 'vite-plugin-node-polyfills'; // Use named import
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [
+    nodePolyfills({
+      global: true,     // Enables polyfilling for `global`
+      process: true,    // Enables polyfilling for `process`
+      buffer: true,     // Enables polyfilling for `Buffer`
+    }),
+  ],
+});
